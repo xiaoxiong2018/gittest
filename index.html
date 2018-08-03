@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <style>
+        #div1{
+            width:400px;
+            height:300px;
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+    
+   <div id="div1">
+       <img id="drag1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQndqxmiDUzw1f5onYuGmNn4YKEQ-gAIZbp-GJpdloDKNfpYnmWSA" draggable="true"
+ondrag="drag(event)" width="336" height="200">
+   </div>
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <script type="text/javascript">  
+        function drag(ev){
+            console.log('drag start');
+            console.log(ev);
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+        function allowDrop(){
+            event.preventDefault();
+                event.target.style.background = "purple";
+        }
+        function drop(ev){
+            console.log(ev);
+            var data=ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
+</body>
+</html>
